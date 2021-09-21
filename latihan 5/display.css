@@ -1,0 +1,13 @@
+body {
+  background-image: url("../Latihan\ 1/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: 1300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.Isi {
+  background-color: rgba(230, 220, 179, 0.4);
+  padding: 2rem;
+}
