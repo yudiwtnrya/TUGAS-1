@@ -106,12 +106,12 @@
                                         {{getType(item.typeID)}}
                                     </td>
                                     <td class="px-4 py-3">
-                                        {{ item.price }}
+                                        {{ hasil(item.code) }}
                                     </td>
                                     <td class="px-4 py-3">
-                                        <button class="bg-red-300 rounded-lg px-1 py-1 hover:bg-red-200 font-bold" v-on:click="kurangjumlah(index, item)">-</button> 
+                                        <button class="bg-red-300 rounded-lg px-1 py-1 hover:bg-red-200 font-bold" v-on:click="kurangjumlah(item.code)">-</button> 
                                         {{ item.banyak }}
-                                        <button class="bg-blue-400 rounded-lg px-1 py-1 hover:bg-blue-200 font-bold" v-on:click="tambahjumlah(index,item)">+</button>                                        
+                                        <button class="bg-blue-400 rounded-lg px-1 py-1 hover:bg-blue-200 font-bold" v-on:click="tambahjumlah(item.code)">+</button>                                        
                                     </td>
                                     <td class="px-4 py-3">
                                         <button class="bg-red-300 rounded-lg px-1 py-1 hover:bg-red-200 font-bold" v-on:click="products.splice(index, 1)">Remove</button>
@@ -138,7 +138,7 @@ export default {
 
     return {
        inputP: {
-         qty :1,
+         banyak :1,
        },
             message: '',
             items: [{
@@ -190,17 +190,24 @@ export default {
                 //this.inputP.qty = p.price;
             },
             tambahjumlah: function (id){
-              let m = this.items.filter(function(elem) {
+              let m = this.products.filter(function(elem) {
                     if (elem.code == id) return elem;
                 });
                 m[0].banyak++;
 
             },
-            kurangjumlah: function (id){
-              let m = this.items.filter(function(elem) {
+            hasil: function (id){
+              let m = this.products.filter(function(elem) {
                     if (elem.code == id) return elem;
                 });
-                if (m[0].banyak>1){
+                return m[0].banyak*m[0].price;
+
+            },
+            kurangjumlah: function (id){
+              let m = this.products.filter(function(elem) {
+                    if (elem.code == id) return elem;
+                });
+                if (m[0].banyak !=1){
                   m[0].banyak--;
                 }
 
